@@ -1,6 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) and [Moralis](https://github.com/MoralisWeb3/react-moralis) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Requirements
+
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  - You'll know you've installed it right if you can run:
+    - `git --version`
+- [Nodejs & npm](https://nodejs.org/en/)
+  - You'll know you've installed nodejs right if you can run:
+    - `node --version` And get an ouput like: `vx.x.x`
+  - You'll know you've installed npm right if you can run:
+    - `npm --version` And get an ouput like `x.x.x`
+    - You might need to install it with npm
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) instead of `npm`
+  - You'll know you've installed yarn right if you can run:
+    - `yarn --version` And get an output like: `x.x.x`
+    - You might need to install it with npm
+- [Metamask](https://metamask.io/)
+  - This is a browser extension that lets you interact with the blockchain.
+
+## Quickstart
 
 First, run the development server:
 
@@ -12,27 +30,42 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) and you should see a small button that says "connect".
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Hit it, and you should see metamask pop up.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# Execute a transaction
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+If you want to execute a transaction follow this:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Make sure you have the following installed:
 
-## Learn More
+1. You'll need to open up a second terminal and run:
 
-To learn more about Next.js, take a look at the following resources:
+```
+git clone https://github.com/PatrickAlphaC/hardhat-simple-storage
+cd hardhat-simple-storage
+yarn
+yarn hardhat node
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This will deploy a sample contract and start a local hardhat blockchain.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Update your `page.js` with the new contract address.
 
-## Deploy on Vercel
+In your `page.js` file, update the variable `contractAddress` with the address of the deployed contract. You'll see it near the top of the hardhat output.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Rebuild
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+yarn build
+```
+
+4. Connect your [metamask](https://metamask.io/) to your local hardhat blockchain.
+
+> **PLEASE USE A METAMASK ACCOUNT THAT ISNT ASSOCIATED WITH ANY REAL MONEY.**
+> I usually use a few different browser profiles to separate my metamasks easily.
+
+In the output of the above command, take one of the private key accounts and [import it into your metamask.](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-Account)
+
+Additionally, add your localhost with chainid 31337 to your metamask.
